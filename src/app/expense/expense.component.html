@@ -1,0 +1,125 @@
+<div class="card">
+    <div class="card-header bg-info"><h6>Post New Expense</h6></div>
+    <div class="card-body">
+      <form [formGroup]="budgetform" (ngSubmit)="formSubmit()">
+        <div class="row">
+
+         
+
+        <div class="form-group col">
+          <label>House Rent</label>
+          <input type="text" class="form-control" name="houserent" formControlName="houserent" [class.is-invalid]="f['houserent'].invalid && f['houserent'].touched">
+          <div class="alert alert-danger" *ngIf="f['houserent'].invalid && f['houserent'].touched">
+            <div *ngIf="f['houserent'].errors && f['houserent'].errors['required']"> houserent is required </div>
+          
+            </div>
+        </div>
+
+        <div class="form-group col">
+          <label>Electric Bill</label>
+          <input type="text" class="form-control" name="electricbill" formControlName="electricbill" [class.is-invalid]="f['electricbill'].invalid && f['electricbill'].touched">
+          <div class="alert alert-danger" *ngIf="f['electricbill'].invalid && f['electricbill'].touched">
+            <div *ngIf="f['electricbill'].errors && f['electricbill'].errors['required']"> electricbill is required </div>
+            </div> 
+        </div>
+
+      </div>
+  
+      <div class="row mt-2">
+        
+  
+      <div class="form-group col">
+        <label>Date</label>
+        <input type="date" class="form-control" name="date" formControlName="date" [class.is-invalid]="f['date'].invalid && f['date'].touched">
+        <div class="alert alert-danger" *ngIf="f['date'].invalid && f['date'].touched">
+          <div *ngIf="f['date'].errors && f['date'].errors['required']"> Date  is required </div>
+          </div>
+      </div>
+
+      <div class="form-group col">
+        <label>EMI</label>
+        <input type="emi" class="form-control" name="emi" formControlName="emi" [class.is-invalid]="f['emi'].invalid && f['emi'].touched">
+        <div class="alert alert-danger" *ngIf="f['emi'].invalid && f['emi'].touched">
+          <div *ngIf="f['emi'].errors && f['emi'].errors['required']"> emi is required </div>
+         
+          </div>
+      </div>
+      
+    </div>
+  
+    <div class="row mt-2">
+  
+  
+    <div class="form-group col">
+      <label>Other</label>
+      <select class="form-control" name="other" formControlName="other" [class.is-invalid]="f['other'].invalid && f['other'].touched">
+        <option value=""> --- Select---</option>
+        <option value="Science"> Insurance</option>
+        <option value="Commerce"> Movie Ticket</option>
+        <option value="Arts"> Donation</option>
+      </select>
+
+      <div class="alert alert-danger" *ngIf="f['other'].invalid && f['other'].touched">
+        <div *ngIf="f['other'].errors && f['other'].errors['required']"> other is required </div>
+        </div>
+    </div>
+    
+  
+    
+  </div>
+  
+<br><br>
+
+  
+  
+  <div class="row" mt-2>
+    <div class="form-group text-center" >
+      <button type="submit" [class.disabled]="budgetform.invalid" class="btn btn-success me-2">{{buttonText}}</button>
+      <button type="button" class="btn btn-warning me-2" (click)="resetBtn()">Reset</button>
+      <button type="button" class="btn btn-danger me-2" (click)="cancelBtn()">Cancel</button>
+    </div>
+  
+  </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header bg-info"><h6>Past Income</h6></div>
+    <div class="card-body">
+      <div class="row">
+        <table class="table table-bordered table-responsive table-striped" style=" width: 100%; margin-top: -16px;">
+          <thead>
+            <tr >
+              <th style=" background-color: lightskyblue;">Houserent</th>
+              <th style=" background-color: lightskyblue;">Electric Bill</th>
+              <th style=" background-color: lightskyblue;">Date</th>
+              <th style=" background-color: lightskyblue;">Emi</th>
+              <th style=" background-color: lightskyblue;">Other</th>
+              <th style=" background-color: lightskyblue;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of budget">
+             
+              <td>{{ emp.houserent }}</td>
+              <td>{{ emp.electricbill }}</td>
+              <td>{{ emp.date }}</td>
+              <td>{{ emp.emi }}</td>
+              <td>{{ emp.other }}</td>
+              
+              
+              
+              <td class="text-center">
+                <i class=" fa fa-edit text-primary me-2" style=" cursor: pointer; font-size: 20px;" (click)="Edit(emp.id)"></i>
+                <i class=" fa fa-info text-info me-2" style=" cursor: pointer; font-size: 20px;"></i>
+                <i class=" fa fa-trash-o text-danger me-2" style=" cursor: pointer; font-size: 20px"(click)="Delete(emp.id)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  
